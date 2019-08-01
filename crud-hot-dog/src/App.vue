@@ -9,17 +9,20 @@
 
     <v-content>
       <Slider></Slider>
+      <Form></Form>
     </v-content>
   </v-app>
 </template>
 
 <script>
 import Slider from './components/Slider';
+import Form from './components/Form';
 
 export default {
   name: 'App',
   components: {
-    Slider
+    Slider,
+    Form
   },
   data: () => ({
     //
