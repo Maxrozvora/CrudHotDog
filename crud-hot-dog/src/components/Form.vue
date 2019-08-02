@@ -16,7 +16,6 @@
                         <v-radio v-for="(type, i) in sausagesType" :key="i" :label="type.name" :value="type"></v-radio>
                     </v-radio-group>
                     <span>Additional ingredients:</span>
-                    <div class="caption green--text"> 5 uah</div>
                     <v-flex row>
                         <v-checkbox v-for="(item, i) in additionalIngredients" :key="i" v-model="item.added"
                                     :label="item.name" class="mx-2"></v-checkbox>
@@ -24,12 +23,9 @@
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="green darken-1" text @click="dialog = false">Cancel</v-btn>
-                    <v-btn color="green darken-1" text @click="create">Create</v-btn>
+                    <v-btn color="warning darken-1" @click="dialog = false">Cancel</v-btn>
+                    <v-btn color="primary darken-1" @click="create">Create</v-btn>
                 </v-card-actions>
-                <pre>
-					{{$data}}
-				</pre>
             </v-card>
         </v-dialog>
     </v-layout>
