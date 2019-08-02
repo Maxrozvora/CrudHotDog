@@ -29,8 +29,8 @@
 				</v-card-text>
 				<v-card-actions>
 					<v-spacer></v-spacer>
-					<v-btn color="green darken-1" text @click="dialog = false">Disagree</v-btn>
-					<v-btn color="green darken-1" text @click="dialog = false">Agree</v-btn>
+					<v-btn color="green darken-1" text @click="dialog = false">Cancel</v-btn>
+					<v-btn color="green darken-1" text @click="create">Create</v-btn>
 				</v-card-actions>
 				<pre>
 					{{$data}}
@@ -43,56 +43,68 @@
 <script>
   export default {
     name: "Form",
-		data: () => ({
-			dialog: false,
-			base: '',
-			sausages: '',
-			baseType: [
-				{
-					name: 'Bun',
-					price: 20
-				},
-				{
-					name: 'Pita',
-					price: 30
-				}
-			],
-			sausagesType: [
-				{name: 'Milk', price: 20}, {name: 'Hinting', price: 30}
-			],
-			additionalIngredients: [
-				{
-					name: 'Cheese',
-					price: 5,
-					added: false
-				},
-				{
-					name: 'Fried potatoes',
-					price: 5,
-					added: false
-				},
-				{
-					name: 'Carrots',
-					price: 5,
-					added: false
-				},
-				{
-					name: 'Cabbage',
-					price: 5,
-					added: false
-				},
-				{
-					name: 'Tomatoes',
-					price: 5,
-					added: false
-				},
-				{
-					name: 'Pickles',
-					price: 5,
-					added: false
-				}
-			]
-		})
+	data: () => ({
+		dialog: false,
+		base: '',
+		sausages: '',
+		baseType: [
+			{
+				name: 'Bun',
+				price: 20
+			},
+			{
+				name: 'Pita',
+				price: 30
+			}
+		],
+		sausagesType: [
+			{name: 'Milk', price: 20}, {name: 'Hinting', price: 30}
+		],
+		additionalIngredients: [
+			{
+				name: 'Cheese',
+				price: 5,
+				added: false
+			},
+			{
+				name: 'Fried potatoes',
+				price: 5,
+				added: false
+			},
+			{
+				name: 'Carrots',
+				price: 5,
+				added: false
+			},
+			{
+				name: 'Cabbage',
+				price: 5,
+				added: false
+			},
+			{
+				name: 'Tomatoes',
+				price: 5,
+				added: false
+			},
+			{
+				name: 'Pickles',
+				price: 5,
+				added: false
+			}
+		],
+		hotDogs: []
+	}),
+  methods: {
+	create() {
+		const hotDog = {
+			base: this.base,
+			sausages: this.sausages,
+			additionalIngredients: this.additionalIngredients
+		}
+		this.hotDogs.push(hotDog);
+		console.log(this.hotDogs)
+	}
+  }
   }
 </script>
 
