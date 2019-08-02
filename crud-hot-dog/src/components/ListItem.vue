@@ -12,7 +12,8 @@
         </v-card-text>
 
         <v-card-actions>
-            <v-btn text>Listen Now</v-btn>
+            <v-btn color="warning">Delete</v-btn>
+            <v-btn color="primary">Edit</v-btn>
         </v-card-actions>
     </v-card>
 </template>
