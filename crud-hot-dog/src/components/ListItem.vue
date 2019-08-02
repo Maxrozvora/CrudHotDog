@@ -1,8 +1,14 @@
 <template>
     <v-card color="#385F73" dark class="mb-2">
         <v-card-text class="white--text">
-            <div class="headline mb-2">Unlimited music now</div>
-            Listen to your favorite artists and albums whenever and wherever, online and offline.
+            <div class="headline mb-2">Hot dog</div>
+            <div>Base: {{item.base.name}}</div>
+            <div>Sausages: {{item.sausages.name}}</div>
+            <div>additional Ingredients:
+                <span v-for="(ingr, i) in item.additionalIngredients" :key="i">
+                    {{ingr.name}}
+                </span>
+            </div>
         </v-card-text>
 
         <v-card-actions>
@@ -13,7 +19,13 @@
 
 <script>
     export default {
-        name: "ListItem"
+        name: "ListItem",
+        props: ['item'],
+        computed: {
+            // totalPrice() {
+            //     return this.item.base
+            // }
+        }
     }
 </script>
 
