@@ -9,14 +9,21 @@
 				<v-card-text>
 					<span>Base:</span>
 					<v-radio-group v-model="base" row>
-						<v-radio v-for="(type, i) in baseType" :key="i" :label="type.name" :value="type"></v-radio>
+                        <div v-for="(type, i) in baseType" :key="i">
+                            <v-radio :label="type.name" :value="type"></v-radio>
+                            <span class="caption green--text"> {{type.price}} uah</span>
+                        </div>
 					</v-radio-group>
 					<span>Sausages:</span>
 					<v-radio-group v-model="sausages" row>
-						<v-radio v-for="(type, i) in sausagesType" :key="i" :label="type.name" :value="type"></v-radio>
+                        <div v-for="(type, i) in sausagesType" :key="i">
+                            <v-radio  :label="type.name" :value="type"></v-radio>
+                            <span class="caption green--text"> {{type.price}} uah</span>
+                        </div>
 					</v-radio-group>
 					<span>Additional ingredients:</span>
-					<v-flex row>
+                    <div class="caption green--text"> 5 uah</div>
+                    <v-flex row>
 						<v-checkbox v-for="(item, i) in additionalIngredients" :key="i" v-model="item.added" :label="item.name" class="mx-2"></v-checkbox>
 					</v-flex>
 				</v-card-text>
@@ -43,7 +50,7 @@
 			baseType: [
 				{
 					name: 'Bun',
-					Price: 20
+					price: 20
 				},
 				{
 					name: 'Pita',
@@ -66,12 +73,12 @@
 				},
 				{
 					name: 'Carrots',
-					price: 3,
+					price: 5,
 					added: false
 				},
 				{
 					name: 'Cabbage',
-					price: 3,
+					price: 5,
 					added: false
 				},
 				{
