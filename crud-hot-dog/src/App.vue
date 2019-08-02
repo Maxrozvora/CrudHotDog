@@ -10,6 +10,7 @@
     <v-content>
       <Slider></Slider>
       <Form></Form>
+      <List></List>
     </v-content>
   </v-app>
 </template>
@@ -17,12 +18,12 @@
 <script>
 import Slider from './components/Slider';
 import Form from './components/Form';
+import List from './components/List';
 
 export default {
   name: 'App',
   components: {
-    Slider,
-    Form
+    Slider, Form, List
   },
   data: () => ({
     //

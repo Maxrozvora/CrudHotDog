@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    list: []
+    list: [1,2,3]
   },
   mutations: {
 
