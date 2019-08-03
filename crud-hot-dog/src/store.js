@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from 'axios'
 
 Vue.use(Vuex)
+
+const domain ='http://crudhotdog';
 
 export default new Vuex.Store({
   state: {
@@ -16,6 +19,10 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    createItem(item) {
+      axios.post(domain + '/dostup/request.php', JSON.stringify(item))
+        .then(console.log('success'))
 
+    }
   }
 })

@@ -100,6 +100,7 @@
         }
         this.createItem(hotDog)
         this.dialog = false
+				this.$store.dispatch('createItem')
       }
     },
     computed: {
