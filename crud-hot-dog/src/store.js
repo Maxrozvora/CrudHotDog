@@ -26,11 +26,14 @@ export default new Vuex.Store({
     // }
     loadItem(state, payload) {
       state.list = payload
+    },
+    deleteItem(state, payload) {
+      const index = state.list.indexOf(payload)
+      state.list.splice(index,1)
     }
   },
   actions: {
     async createItem({commit}, payload) {
-      // console.log(payload); // TODO console.log
       try {
         const newHotDog = new HotDog(
           payload.base,
@@ -69,6 +72,7 @@ export default new Vuex.Store({
       try {
         const fbValue = await fb.database.ref('hotdog/' + payload.id).remove()
         console.log(fbValue); // TODO console.log
+        commit('deleteItem', payload)
       }
       catch (e) {
         throw new Error('Something goes wrong' +  e.message)
