@@ -14,7 +14,7 @@
 		</v-card-text>
 
 		<v-card-actions>
-			<v-btn color="warning">Delete</v-btn>
+			<v-btn color="warning" @click="deletePost(item)">Delete</v-btn>
 			<v-btn color="primary">Edit</v-btn>
 		</v-card-actions>
 	</v-card>
@@ -24,11 +24,14 @@
   export default {
     name: "ListItem",
     props: ['item'],
-    computed: {
-      // totalPrice() {
-      //     return this.item.base
-      // }
-    }
+		methods: {
+      deletePost(item) {
+        console.log(item); // TODO console.log
+				this.$store.dispatch('deleteItem', item)
+			}
+		},
+		
+    computed: {}
   }
 </script>
 

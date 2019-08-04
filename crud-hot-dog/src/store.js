@@ -41,7 +41,7 @@ export default new Vuex.Store({
         console.log(fbValue); // TODO console.log
       }
       catch (e) {
-        throw new Error('Somethimg goes wrong' +  e.message)
+        throw new Error('Something goes wrong' +  e.message)
       }
       commit('createItem', payload)
 
@@ -62,6 +62,15 @@ export default new Vuex.Store({
       }
       catch (e) {
         throw new Error('fetch error' + e.message )
+      }
+    },
+    async deleteItem({commit}, payload) {
+      try {
+        const fbValue = await fb.database.ref('hotdog/' + payload.id).remove()
+        console.log(fbValue); // TODO console.log
+      }
+      catch (e) {
+        throw new Error('Something goes wrong' +  e.message)
       }
     }
   }
