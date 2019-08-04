@@ -21,9 +21,6 @@ export default new Vuex.Store({
     createItem(state, payload) {
       state.list.push(payload)
     },
-    // deleteItem(state, payload) {
-    //     console.log(payload)
-    // }
     loadItem(state, payload) {
       state.list = payload
     },

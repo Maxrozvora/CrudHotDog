@@ -30,7 +30,6 @@
 				bus.$emit('editHotDog', item)
 			},
       deletePost(item) {
-        console.log(item); // TODO console.log
 				this.$store.dispatch('deleteItem', item)
 			}
 		},
