@@ -15,14 +15,17 @@ class HotDog {
 
 export default new Vuex.Store({
   state: {
-    list: [{"base":{"name":"Bun","price":20},"sausages":{"name":"Hinting","price":30},"additionalIngredients":[{"name":"Cheese","price":5,"added":true},{"name":"Fried potatoes","price":5,"added":false},{"name":"Carrots","price":5,"added":true},{"name":"Cabbage","price":5,"added":false},{"name":"Tomatoes","price":5,"added":false},{"name":"Pickles","price":5,"added":true}]},{"base":{"name":"Bun","price":20},"sausages":{"name":"Hinting","price":30},"additionalIngredients":[{"name":"Cheese","price":5,"added":true},{"name":"Fried potatoes","price":5,"added":false},{"name":"Carrots","price":5,"added":true},{"name":"Cabbage","price":5,"added":false},{"name":"Tomatoes","price":5,"added":false},{"name":"Pickles","price":5,"added":true}]},{"base":{"name":"Pita","price":30},"sausages":{"name":"Hinting","price":30},"additionalIngredients":[{"name":"Cheese","price":5,"added":true},{"name":"Fried potatoes","price":5,"added":false},{"name":"Carrots","price":5,"added":true},{"name":"Cabbage","price":5,"added":false},{"name":"Tomatoes","price":5,"added":false},{"name":"Pickles","price":5,"added":true}]}]
+    list: []
   },
   mutations: {
     createItem(state, payload) {
       state.list.push(payload)
     },
-    deleteItem(state, payload) {
-        console.log(payload)
+    // deleteItem(state, payload) {
+    //     console.log(payload)
+    // }
+    loadItem(state, payload) {
+      state.list = payload
     }
   },
   actions: {
@@ -38,10 +41,28 @@ export default new Vuex.Store({
         console.log(fbValue); // TODO console.log
       }
       catch (e) {
-        throw new Error('Somethimg goes wrong', e.message)
+        throw new Error('Somethimg goes wrong' +  e.message)
       }
       commit('createItem', payload)
 
+    },
+    async fetchItem({commit}) {
+      const result = []
+
+      try {
+        const fbValue = await fb.database().ref('hotdog').once('value')
+        const hotDogs = fbValue.val()
+        Object.keys(hotDogs).forEach(key => {
+          const item = hotDogs[key]
+          result.push(
+            new HotDog(item.base, item.sausages, item.additionalIngredients, item.id)
+          )
+        })
+        commit('loadItem', result)
+      }
+      catch (e) {
+        throw new Error('fetch error' + e.message )
+      }
     }
   }
 })

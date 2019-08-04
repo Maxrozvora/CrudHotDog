@@ -24,5 +24,6 @@ new Vue({
       appId: "1:206340798640:web:bd7352b7d80228ec"
     };
     fb.initializeApp(firebaseConfig)
+    this.$store.dispatch('fetchItem')
   }
 }).$mount('#app')
