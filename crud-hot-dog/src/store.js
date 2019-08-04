@@ -74,5 +74,10 @@ export default new Vuex.Store({
         throw new Error('Something goes wrong' +  e.message)
       }
     }
+  },
+  getters: {
+    getPost(state) {
+      return state.list.reverse()
+    }
   }
 })
