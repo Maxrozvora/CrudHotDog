@@ -44,7 +44,7 @@ export default new Vuex.Store({
       catch (e) {
         throw new Error('Something goes wrong' +  e.message)
       }
-      commit('createItem', payload)
+      // commit('createItem', payload)
 
     },
     async fetchItem({commit}) {

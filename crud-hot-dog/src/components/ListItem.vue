@@ -1,18 +1,9 @@
 <template>
 	<v-card color="#385F73" dark class="mb-2">
 		<v-card-text class="white--text">
-			<div class="headline mb-2">Hot dog</div>
-			<div>Base:
-				<v-chip color="success ma-2" small>
-					{{item.base}}
-				</v-chip>
-			</div>
-			<div>Sausages:
-				<v-chip color="success ma-2" small>
-					{{item.sausages}}
-				</v-chip>
-			</div>
-			<div>additional Ingredients:
+			<div class="headline mb-2">Hot dog in {{item.base}}</div>
+			<div class="subtitle-1">With {{item.sausages}} sausages</div>
+			<div class="subtitle-1">Additional Ingredients:
 				<span v-for="(ingr, i) in item.additionalIngredients" :key="i">
 					<v-chip
 						v-if="ingr.added"
