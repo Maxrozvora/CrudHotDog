@@ -70,8 +70,7 @@ export default new Vuex.Store({
     },
     async deleteItem({commit}, payload) {
       try {
-        const fbValue = await fb.database.ref('hotdog/' + payload.id).remove()
-        console.log(fbValue); // TODO console.log
+        await fb.database().ref('hotdog/' + payload.id).remove()
         commit('deleteItem', payload)
       }
       catch (e) {
