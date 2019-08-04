@@ -1,10 +1,17 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from 'axios'
+import * as fb from 'firebase'
 
 Vue.use(Vuex)
 
-const domain ='http://crudhotdog';
+class HotDog {
+  constructor(base,sausages,additionalIngredients, id = null) {
+    this.base = base
+    this.sausages = sausages
+    this.additionalIngredients = additionalIngredients
+    this.id = id
+  }
+}
 
 export default new Vuex.Store({
   state: {
@@ -19,9 +26,21 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    createItem(item) {
-      axios.post(domain + '/dostup/request.php', JSON.stringify(item))
-        .then(console.log('success'))
+    async createItem({commit}, payload) {
+      // console.log(payload); // TODO console.log
+      try {
+        const newHotDog = new HotDog(
+          payload.base,
+          payload.sausages,
+          payload.additionalIngredients
+        )
+        const fbValue = await fb.database().ref('hotdog').push(newHotDog)
+        console.log(fbValue); // TODO console.log
+      }
+      catch (e) {
+        throw new Error('Somethimg goes wrong', e.message)
+      }
+      commit('createItem', payload)
 
     }
   }

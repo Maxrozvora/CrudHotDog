@@ -22,7 +22,7 @@ new Vue({
       storageBucket: "hotdog-10c9d.appspot.com",
       messagingSenderId: "206340798640",
       appId: "1:206340798640:web:bd7352b7d80228ec"
-    }
+    };
     fb.initializeApp(firebaseConfig)
   }
 }).$mount('#app')

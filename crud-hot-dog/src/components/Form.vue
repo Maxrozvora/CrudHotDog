@@ -95,12 +95,10 @@
         const hotDog = {
           base: this.base,
           sausages: this.sausages,
-          additionalIngredients: this.additionalIngredients,
-          totalPrice: this.totalPrice
+          additionalIngredients: this.additionalIngredients
         }
-        this.createItem(hotDog)
         this.dialog = false
-				this.$store.dispatch('createItem')
+				this.$store.dispatch('createItem', hotDog)
       }
     },
     computed: {
