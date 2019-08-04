@@ -29,6 +29,7 @@
     components: {ListItem},
     computed: {
       getList() {
+        console.log(this.$store.state.list); // TODO console.log
         return this.$store.state.list
       }
     }

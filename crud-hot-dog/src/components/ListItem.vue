@@ -6,8 +6,10 @@
 			<div>Sausages: {{item.sausages.name}}</div>
 			<div>additional Ingredients:
 				<span v-for="(ingr, i) in item.additionalIngredients" :key="i">
-                    {{ingr.name}}
-                </span>
+					<span v-if="ingr.added">
+						{{ingr.name}}
+					</span>
+			</span>
 			</div>
 		</v-card-text>
 

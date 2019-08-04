@@ -55,7 +55,7 @@ export default new Vuex.Store({
         Object.keys(hotDogs).forEach(key => {
           const item = hotDogs[key]
           result.push(
-            new HotDog(item.base, item.sausages, item.additionalIngredients, item.id)
+            new HotDog(item.base, item.sausages, item.additionalIngredients, key)
           )
         })
         commit('loadItem', result)
