@@ -34,6 +34,18 @@
 			</v-card>
 		</v-dialog>
 		<v-btn color="primary" dark class="my-3" @click="showModal" large>Create Hot Dog</v-btn>
+		<v-snackbar
+			v-model="snackbar"
+		>
+			{{ snackbarText }}
+			<v-btn
+				color="pink"
+				text
+				@click="snackbar = false"
+			>
+				Close
+			</v-btn>
+		</v-snackbar>
 	</v-layout>
 </template>
 
@@ -46,6 +58,8 @@
     data: () => ({
       dialog: false,
 			edit: false,
+      snackbar:false,
+      snackbarText: '',
 			dialogTitle: '',
       base: 'Bun',
       sausages: 'Milk',
@@ -93,6 +107,8 @@
         }
         this.dialog = false
 				this.$store.dispatch('createItem', hotDog)
+				this.snackbar = true
+				this.snackbarText = 'Hot Dog was created'
       },
 			editItem(item) {
         this.dialogTitle = 'Edit Hot Dog';
@@ -113,6 +129,8 @@
           additionalIngredients: this.additionalIngredients,
 					id: this.id
         })
+        this.snackbar = true
+        this.snackbarText = 'Hot Dog was edited'
 			}
     },
     mounted() {
