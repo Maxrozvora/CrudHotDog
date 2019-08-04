@@ -9,11 +9,13 @@
 				<v-card-text>
 					<span>Base:</span>
 					<v-radio-group v-model="base" row>
-						<v-radio v-for="(type, i) in baseType" :key="i" :label="type.name" :value="type"></v-radio>
+						<v-radio  label="Bun" value="Bun"></v-radio>
+						<v-radio  label="Pita" value="Pita"></v-radio>
 					</v-radio-group>
 					<span>Sausages:</span>
 					<v-radio-group v-model="sausages" row>
-						<v-radio v-for="(type, i) in sausagesType" :key="i" :label="type.name" :value="type"></v-radio>
+						<v-radio label="Milk" value="Milk"></v-radio>
+						<v-radio label="Hunting" value="Hunting"></v-radio>
 					</v-radio-group>
 					<span>Additional ingredients:</span>
 					<v-flex row>
@@ -33,26 +35,14 @@
 
 <script>
   import {mapMutations} from 'vuex'
+  import { bus } from './../bus'
 
   export default {
     name: "Form",
     data: () => ({
       dialog: false,
-      base: {name: 'Bun', price: 20},
-      sausages: {name: 'Milk', price: 20},
-      baseType: [
-        {
-          name: 'Bun',
-          price: 20
-        },
-        {
-          name: 'Pita',
-          price: 30
-        }
-      ],
-      sausagesType: [
-        {name: 'Milk', price: 20}, {name: 'Hunting', price: 30}
-      ],
+      base: 'Bun',
+      sausages: 'Milk',
       additionalIngredients: [
         {
           name: 'Cheese',
@@ -99,7 +89,14 @@
         }
         this.dialog = false
 				this.$store.dispatch('createItem', hotDog)
-      }
+      },
+			editItem(item) {
+        this.dialog = true;
+				this.base = item.base;
+				this.sausages = item.sausages;
+				this.additionalIngredients = item.additionalIngredients;
+				console.log(this.$data); // TODO console.log
+			}
     },
     computed: {
       countPrice() {
@@ -111,6 +108,11 @@
           return cost
         })
       }
+    },
+    mounted() {
+      bus.$on('editHotDog', (item) => {
+				this.editItem(item)
+			})
     }
   }
 </script>
