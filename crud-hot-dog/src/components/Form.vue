@@ -113,17 +113,6 @@
         this.edit = false;
 			}
     },
-    computed: {
-      countPrice() {
-        return this.base.price + this.sausages.price + this.additionalIngredients.filter(item => {
-          let cost;
-          if (item.added) {
-            cost = +item.price
-          }
-          return cost
-        })
-      }
-    },
     mounted() {
       bus.$on('editHotDog', (item) => {
 				this.editItem(item)
