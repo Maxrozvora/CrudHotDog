@@ -52,32 +52,26 @@
       additionalIngredients: [
         {
           name: 'Cheese',
-          price: 5,
           added: false
         },
         {
           name: 'Fried potatoes',
-          price: 5,
           added: false
         },
         {
           name: 'Carrots',
-          price: 5,
           added: false
         },
         {
           name: 'Cabbage',
-          price: 5,
           added: false
         },
         {
           name: 'Tomatoes',
-          price: 5,
           added: false
         },
         {
           name: 'Pickles',
-          price: 5,
           added: false
         }
       ],
