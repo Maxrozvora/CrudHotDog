@@ -30,7 +30,9 @@
 				bus.$emit('editHotDog', item)
 			},
       deletePost(item) {
-				this.$store.dispatch('deleteItem', item)
+        if (confirm('Are your sure for remove pizza?')) {
+          this.$store.dispatch('deleteItem', item)
+				}
 			}
 		},
 		
