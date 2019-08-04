@@ -74,7 +74,8 @@
           name: 'Pickles',
           added: false
         }
-      ]
+      ],
+			id: ''
     }),
     methods: {
       ...mapMutations([
@@ -100,10 +101,18 @@
 				this.base = item.base;
 				this.sausages = item.sausages;
 				this.additionalIngredients = item.additionalIngredients;
+				this.id = item.id
 			},
       saveItem() {
         this.dialog = false;
         this.edit = false;
+
+        this.$store.dispatch('updateItem', {
+          base: this.base,
+          sausages: this.sausages,
+          additionalIngredients: this.additionalIngredients,
+					id: this.id
+        })
 			}
     },
     mounted() {

@@ -73,6 +73,15 @@ export default new Vuex.Store({
       catch (e) {
         throw new Error('Something goes wrong' +  e.message)
       }
+    },
+    async updateItem({commit}, {base, sausages, additionalIngredients, id}) {
+      try {
+        console.table(base, sausages, additionalIngredients, id); // TODO console.log
+        await fb.database().ref('hotdog').child(id).update({base,sausages,additionalIngredients})
+      }
+      catch (e) {
+        throw new Error('Something goes wrong' +  e.message)
+      }
     }
   },
   getters: {
