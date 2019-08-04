@@ -74,8 +74,7 @@
           name: 'Pickles',
           added: false
         }
-      ],
-      hotDogs: []
+      ]
     }),
     methods: {
       ...mapMutations([

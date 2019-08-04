@@ -38,7 +38,8 @@ export default new Vuex.Store({
           payload.additionalIngredients
         )
         const fbValue = await fb.database().ref('hotdog').push(newHotDog)
-        console.log(fbValue); // TODO console.log
+        commit('createItem', newHotDog)
+
       }
       catch (e) {
         throw new Error('Something goes wrong' +  e.message)
