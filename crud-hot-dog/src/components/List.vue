@@ -4,20 +4,6 @@
 		<v-card-text>
 			<ListItem v-for="(item, i) in getList" :key="i" :item="item"></ListItem>
 		</v-card-text>
-		<v-card-actions>
-			<v-btn
-				color="orange"
-				text
-			>
-				Share
-			</v-btn>
-			<v-btn
-				color="orange"
-				text
-			>
-				Explore
-			</v-btn>
-		</v-card-actions>
 	</v-card>
 </template>
 

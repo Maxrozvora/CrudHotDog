@@ -2,13 +2,25 @@
 	<v-card color="#385F73" dark class="mb-2">
 		<v-card-text class="white--text">
 			<div class="headline mb-2">Hot dog</div>
-			<div>Base: {{item.base}}</div>
-			<div>Sausages: {{item.sausages}}</div>
+			<div>Base:
+				<v-chip color="success ma-2" small>
+					{{item.base}}
+				</v-chip>
+			</div>
+			<div>Sausages:
+				<v-chip color="success ma-2" small>
+					{{item.sausages}}
+				</v-chip>
+			</div>
 			<div>additional Ingredients:
 				<span v-for="(ingr, i) in item.additionalIngredients" :key="i">
-					<span v-if="ingr.added">
+					<v-chip
+						v-if="ingr.added"
+						color="success ma-2"
+						small
+					>
 						{{ingr.name}}
-					</span>
+					</v-chip>
 			</span>
 			</div>
 		</v-card-text>
@@ -21,21 +33,22 @@
 </template>
 
 <script>
-	import { bus } from './../bus'
+  import {bus} from './../bus'
+
   export default {
     name: "ListItem",
     props: ['item'],
-		methods: {
+    methods: {
       editPost(item) {
-				bus.$emit('editHotDog', item)
-			},
+        bus.$emit('editHotDog', item)
+      },
       deletePost(item) {
         if (confirm('Are your sure for remove pizza?')) {
           this.$store.dispatch('deleteItem', item)
-				}
-			}
-		},
-		
+        }
+      }
+    },
+
     computed: {}
   }
 </script>
