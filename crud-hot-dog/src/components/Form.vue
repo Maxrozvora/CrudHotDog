@@ -1,11 +1,8 @@
 <template>
 	<v-layout justify-center>
 		<v-dialog v-model="dialog" persistent max-width="600">
-			<template v-slot:activator="{ on }">
-				<v-btn color="primary" dark v-on="on" class="my-3" large>Create Hot Dog</v-btn>
-			</template>
 			<v-card>
-				<v-card-title class="headline">Create Hot Dog</v-card-title>
+				<v-card-title class="headline">{{dialogTitle}}</v-card-title>
 				<v-card-text>
 					<span>Base:</span>
 					<v-radio-group v-model="base" row>
@@ -25,11 +22,18 @@
 				</v-card-text>
 				<v-card-actions>
 					<v-spacer></v-spacer>
-					<v-btn color="warning darken-1" @click="dialog = false">Cancel</v-btn>
-					<v-btn color="primary darken-1" @click="create">Create</v-btn>
+					<div v-if="!edit">
+						<v-btn color="warning darken-1" @click="dialog = false">Cancel</v-btn>
+						<v-btn color="primary darken-1" @click="create">Create</v-btn>
+					</div>
+					<div v-else>
+						<v-btn color="warning darken-1" @click="dialog = false">Cancel</v-btn>
+						<v-btn color="primary darken-1" @click="saveItem">Save</v-btn>
+					</div>
 				</v-card-actions>
 			</v-card>
 		</v-dialog>
+		<v-btn color="primary" dark class="my-3" @click="showModal" large>Create Hot Dog</v-btn>
 	</v-layout>
 </template>
 
@@ -41,6 +45,8 @@
     name: "Form",
     data: () => ({
       dialog: false,
+			edit: false,
+			dialogTitle: '',
       base: 'Bun',
       sausages: 'Milk',
       additionalIngredients: [
@@ -81,6 +87,10 @@
       ...mapMutations([
         'createItem'
       ]),
+      showModal() {
+        this.dialog = !this.dialog
+				this.dialogTitle = 'Create Hot Dog'
+			},
       create() {
         const hotDog = {
           base: this.base,
@@ -91,11 +101,16 @@
 				this.$store.dispatch('createItem', hotDog)
       },
 			editItem(item) {
+        this.dialogTitle = 'Edit Hot Dog';
         this.dialog = true;
+        this.edit = true;
 				this.base = item.base;
 				this.sausages = item.sausages;
 				this.additionalIngredients = item.additionalIngredients;
-				console.log(this.$data); // TODO console.log
+			},
+      saveItem() {
+        this.dialog = false;
+        this.edit = false;
 			}
     },
     computed: {
